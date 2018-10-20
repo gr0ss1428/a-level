@@ -12,20 +12,136 @@
 
 [Значимые и ссылочные типы данных](http://www.albahari.com/valuevsreftypes.aspx)
 
+[Циклы в C#](http://csharp.net-tutorials.com/basics/loops/)
+
 
 ### JIT (Just-in-time-compilation)
 
 ![JIT](/images/jit.png)
 
-###CTS (Common Type System, Общая система типов)
+### CTS (Common Type System, Общая система типов)
 
-![CTS](images/cts.png)
+![CTS](/images/cts.png)
 
 Таблицов типов CTS
 
-![Типы CTS](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/cts-datatypes.png)
+![Типы CTS](/images/cts-datatypes.png)
 
-###CLR (Common Language Runtime, Общеязыковая исполняющая среда)
+### CLR (Common Language Runtime, Общеязыковая исполняющая среда)
 
-![CLR](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/clr.png)
+![CLR](/images/clr.png)
+
+### .NET Framework
+
+![.NET Framework](/images/dotnet.png)
+
+## Типы данных в .NET Framework
+
+![Типы данных в .NET Framework](/images/dotnet-datatypes.png)
+
+**Value (значимый тип)** – вся переменная хранится в стеке
+
+**Reference (ссылочный тип)** – только ссылка на переменную хранится в стеке, тело переменной хранится в куче
+
+![Ссылочные типы в .NET](/images/reference-datatype.png)
+
+### Основные отличия типов данных в .NET
+
+**a) - value types**
+**б) - reference types**
+
+1 Размещение типов: 
+	а) в стеке
+	б) в управляемой куче
+2 Представление переменной: 
+	а) в виде локальной копии
+	б) в виде ссылки, указывающей на занимаемое соответствующим экземпляром место в памяти.
+3 Наследование:
+	а) наследуются от System.ValueType
+	б) наследуются от любых других негерметизированных типов (кроме System.ValueType)
+4 Может быть базовым классом:
+	а) Нет. Типы-значения всегда являются герметизированными
+	б) Да, если тип не герметизирован
+5 Передача данных:
+	а) Передаются по значению(т.е. копия переменной)
+	б) Передаются по ссылке (т.е. адрес переменной)
+6 Можно ли определять конструкторы: 
+	а) Да, но имеется зарезервированный конструктор по умолчанию
+	б) Да
+7 Когда прекращают существование:
+	а) Когда выходят за рамки того контекста, в котором определялись.
+	б) Когда объект подвергается сборке мусора.
+
+
+### Типы данных
+
+![Типы данных в .NET](/images/dotnet-types.png)
+
+## Условия в C#
+
+* **>**  - больше
+* **>=**  - больше или равно
+* **<** - меньше
+* **<=** - меньше или равно
+* **==** - равно
+* **!= ** - не равно
+
+### Условные операторы
+
+**** if
+
+![Структура условного оператора](/images/conditions.png)
+
+if (**condition1**) 
+{
+    *Условие 1 выполняется*
+}
+else if (condition2) 
+{
+    *Условие 1 не выполняется, но выполняется условие 2*
+}
+else 
+{
+    *Ни одно из условий не выполнилось*
+}
+
+**** switch
+
+switch (**condition**)
+     case *option1*:
+           
+            break;
+	case *option2**:
+           
+            break;
+	default:
+	
+			break;
+
+### Циклы в C#
+
+#### while() {}
+
+while (*condition*) 
+{
+	*// Выполняется пока условие верно*
+}
+
+#### do {} (while)
+
+do  
+{
+	*// Выполняется пока условие верно*
+} 
+while (*condition*)
+
+**Выполнится хотя бы один раз!!!**
+
+#### for ()
+
+for (int i=0; i < *iterationCount*; i++) {
+
+}
+
+
 
