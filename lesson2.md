@@ -10,6 +10,22 @@
 
 [CLR](https://docs.microsoft.com/ru-ru/dotnet/standard/clr)
 
-### JIT
+[Значимые и ссылочные типы данных](http://www.albahari.com/valuevsreftypes.aspx)
 
-![JIT](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/jit.png)
+
+### JIT (Just-in-time-compilation)
+
+![JIT](/images/jit.png)
+
+###CTS (Common Type System, Общая система типов)
+
+![CTS](images/cts.png)
+
+Таблицов типов CTS
+
+![Типы CTS](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/cts-datatypes.png)
+
+###CLR (Common Language Runtime, Общеязыковая исполняющая среда)
+
+![CLR](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/clr.png)
+
