@@ -114,17 +114,29 @@
 ![Структура условного оператора](/images/conditions.png)
 
 if (**condition1**) 
+
 {
+
     *Условие 1 выполняется*
+	
 }
+
 else if (condition2) 
+
 {
+
     *Условие 1 не выполняется, но выполняется условие 2*
+	
 }
+
 else 
+
 {
+
     *Ни одно из условий не выполнилось*
+	
 }
+
 
 #### switch
 
@@ -143,26 +155,36 @@ switch (**condition**)
 
 #### while() {}
 
-while (*condition*) 
+while (*condition*)
+
 {
+
 	*// Выполняется пока условие верно*
+	
 }
 
 #### do {} (while)
 
 do  
+
 {
+
 	*// Выполняется пока условие верно*
+	
 } 
+
 while (*condition*)
 
 **Выполнится хотя бы один раз!!!**
 
 #### for ()
 
-for (int i=0; i < *iterationCount*; i++) {
+for (int i=0; i < *iterationCount*; i++) 
+
+{
 
 }
+
 
 ### Домашнее задание
 
