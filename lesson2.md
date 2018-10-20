@@ -11,3 +11,5 @@
 [CLR](https://docs.microsoft.com/ru-ru/dotnet/standard/clr)
 
 ### JIT
+
+![JIT](https://github.com/YaroslavKuchuk/a-level/blob/lesson-2/images/jit.png)
