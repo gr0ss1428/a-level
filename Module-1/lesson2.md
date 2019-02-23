@@ -17,23 +17,23 @@
 
 ### JIT (Just-in-time-compilation)
 
-![JIT](/module-1/images/jit.png)
+![JIT](/Module-1/images/jit.png)
 
 ### CTS (Common Type System, Общая система типов)
 
-![CTS](/module-1/images/cts.png)
+![CTS](/Module-1/images/cts.png)
 
 Таблицов типов CTS
 
-![Типы CTS](/module-1/images/cts-datatypes.png)
+![Типы CTS](/Module-1/images/cts-datatypes.png)
 
 ### CLR (Common Language Runtime, Общеязыковая исполняющая среда)
 
-![CLR](/module-1/images/clr.png)
+![CLR](/Module-1/images/clr.png)
 
 ### .NET Framework
 
-![.NET Framework](/module-1/images/dotnet.png)
+![.NET Framework](/Module-1/images/dotnet.png)
 
 ## Типы данных в .NET Framework
 
@@ -43,7 +43,7 @@
 
 **Reference (ссылочный тип)** – только ссылка на переменную хранится в стеке, тело переменной хранится в куче
 
-![Ссылочные типы в .NET](/module-1/images/reference-datatype.png)
+![Ссылочные типы в .NET](/Module-1/images/reference-datatype.png)
 
 ### Основные отличия типов данных в .NET
 
@@ -96,7 +96,7 @@
 
 ### Структура типов данных
 
-![Типы данных в .NET](/images/dotnet-types.png)
+![Типы данных в .NET](/Module/images/dotnet-types.png)
 
 ## Условия в C#
 
@@ -111,7 +111,7 @@
 
 #### if
 
-![Структура условного оператора](/images/conditions.png)
+![Структура условного оператора](/Module/images/conditions.png)
 
 if (**condition1**) 
 
