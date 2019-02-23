@@ -96,7 +96,7 @@
 
 ### Структура типов данных
 
-![Типы данных в .NET](/Module/images/dotnet-types.png)
+![Типы данных в .NET](/Module-1/images/dotnet-types.png)
 
 ## Условия в C#
 
@@ -111,7 +111,7 @@
 
 #### if
 
-![Структура условного оператора](/Module/images/conditions.png)
+![Структура условного оператора](/Module-1/images/conditions.png)
 
 if (**condition1**) 
 
