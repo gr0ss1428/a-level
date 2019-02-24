@@ -12,16 +12,6 @@
 
 [JOINs в SQL](http://www.albahari.com/valuevsreftypes.aspx)
 
-[Создание объектов базы данных](https://docs.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-2017)
-
-[Представления](https://docs.microsoft.com/en-us/sql/relational-databases/views/views?view=sql-server-2017)
-
-[Хранимые процедуры](https://www.mssqltips.com/sqlservertutorial/160/sql-server-stored-procedure-tutorial/)
-
-[Stored procedures in SQL Server](https://www.w3schools.com/sql/sql_stored_procedures.asp)
-
-[Triggers in SQL Server](https://www.mssqltips.com/sqlservertutorial/2911/create-sql-server-trigger/)
-
 
 ## Основные понятия
 
