@@ -13,7 +13,7 @@
 
 [CRUD при помощи Dapper](https://habr.com/ru/sandbox/71430/)
 
-[Битва производительности] (https://exceptionnotfound.net/dapper-vs-entity-framework-vs-ado-net-performance-benchmarking/)
+[Битва производительности](https://exceptionnotfound.net/dapper-vs-entity-framework-vs-ado-net-performance-benchmarking/)
 
 ## Многоуровневое приложение
 
