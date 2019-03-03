@@ -2,15 +2,15 @@
 
 ## Полезные ссылки
 
-[ADO.NET от Microsof](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
+[ADO.NET от Microsoft](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 
 [Еще немного про ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/)
 
-[ADO.NET b6y Microsoft](https://msdn.microsoft.com/en-us/library/aa286484.aspx)
+[И еще немного...](https://msdn.microsoft.com/en-us/library/aa286484.aspx)
 
 [Руководство по ADO.NET и работе с базами данных](https://metanit.com/sharp/adonet/)
 
-[Connected vs Disconnected connection modes in ADO.NET] (https://www.c-sharpcorner.com/UploadFile/8a67c0/connected-vs-disconnected-architecture-in-C-Sharp/)
+[Connected vs Disconnected connection modes in ADO.NET](https://www.c-sharpcorner.com/UploadFile/8a67c0/connected-vs-disconnected-architecture-in-C-Sharp/)
 
 ## Основные понятия
 
@@ -30,7 +30,7 @@
 - DataReader
 - DataAdapter
 
-### Connected/Disconnected modes
+## Connected/Disconnected modes
 
 ![Connected/Disconnected modes](/Module-5/images/connected-vs-disconnected-ds.png)
 
@@ -48,8 +48,7 @@
 - Закрыть соединение при вызове метода Close()
 
 
-
-### ConnectionString (строка соединения)
+## ConnectionString (строка соединения)
 
 Ваш пропуск для доступа к базе данных.
 
@@ -64,7 +63,7 @@
 - **Password**: пароль пользователя
 
 
-### Работа с данными
+## Работа с данными
 
 1. Создаем соединение
 2. Создаем экземпляр SqlCommand
@@ -72,7 +71,7 @@
 
 ![Работа с хранимой процедурой](/Module-5/images/sp_call.png)
 
-** НЕ ЗАБЫВАЕМ**
+**НЕ ЗАБЫВАЕМ**
 
 - Указать тип комманды - StoredProcedure
 - Передать набор параметров (при необходимости)
