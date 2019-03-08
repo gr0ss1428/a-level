@@ -1,4 +1,4 @@
-# Урок №38. Entity Framework. Code First.
+# Урок №39. Entity Framework. Code First.
 
 ## Полезные ссылки
 
