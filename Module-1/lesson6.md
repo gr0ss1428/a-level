@@ -4,7 +4,7 @@
 
 [Properties](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
 
-[ref Vs out]http://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/)
+[ref Vs out](http://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/)
 
 [Структуры](https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide/classes-and-structs/structs)
 
@@ -98,6 +98,6 @@ int[, ,] array = new int[4, 2, 5];
 положительных элементов, значение которых больше К (также с клавиатуры) и 
 заменить им первый элемент массива. Показать первый элемент массива.
 
-- * Расширить предыдущую программу путем ввода состояния расчета. 
+* Расширить предыдущую программу путем ввода состояния расчета. 
 Для положительного К – оставляем алгоритм неизменным, для отрицательного – берем сумму всех элементов, 
 которые меньше К и заменяем ей первый элемент.
