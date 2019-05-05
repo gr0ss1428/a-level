@@ -78,7 +78,7 @@
 
 ## Типы данных в .NET Framework
 
-![Типы данных в .NET Framework](/images/dotnet-datatypes.png)
+![Типы данных в .NET Framework](/Module-1/images/dotnet-datatypes.png)
 
 **Value (значимый тип)** – вся переменная хранится в стеке
 
