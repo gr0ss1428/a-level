@@ -11,7 +11,7 @@
 
 ## Полезные ссылки
 
-[Объектно-ориентированное программирование] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/object-oriented-programming)
+[Объектно-ориентированное программирование](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/object-oriented-programming)
 
 [Классы](https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide/classes-and-structs/classes)
 
