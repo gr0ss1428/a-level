@@ -2,15 +2,15 @@
 
 ## Полезные ссылки
 
-[ref VS out] (https://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/)
+[ref VS out](https://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/)
 
-[Наследование] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/inheritance)
+[Наследование](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/inheritance)
 
-[Интерфейсы] (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)
+[Интерфейсы](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)
 
-[Перегрузка членов класса] (https://msdn.microsoft.com/ru-ru/library/ms229029(v=vs.100).aspx)
+[Перегрузка членов класса](https://msdn.microsoft.com/ru-ru/library/ms229029(v=vs.100).aspx)
 
-[Полиморфизм] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/polymorphism)
+[Полиморфизм](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/polymorphism)
 
 ## ref VS out
 
