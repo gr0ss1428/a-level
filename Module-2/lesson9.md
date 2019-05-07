@@ -1,4 +1,4 @@
-# Урок №8. Классы, члены класса, инкапсуляция
+# Урок №9. Классы, члены класса, инкапсуляция
 
 ## Структура модуля
 
@@ -13,17 +13,17 @@
 
 [Объектно-ориентированное программирование] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/object-oriented-programming)
 
-[Классы] (https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide/classes-and-structs/classes)
+[Классы](https://docs.microsoft.com/ru-ru/dotnet/csharp/programming-guide/classes-and-structs/classes)
 
-[Классы и объекты] (https://docs.microsoft.com/ru-ru/dotnet/csharp/tour-of-csharp/classes-and-objects)
+[Классы и объекты](https://docs.microsoft.com/ru-ru/dotnet/csharp/tour-of-csharp/classes-and-objects)
 
-[ООП] (https://metanit.com/sharp/tutorial/3.1.php)
+[ООП](https://metanit.com/sharp/tutorial/3.1.php)
 
-[Свойства] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
+[Свойства](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
 
-[Инкапсуляция] (https://www.tutorialspoint.com/csharp/csharp_encapsulation.htm)
+[Инкапсуляция](https://www.tutorialspoint.com/csharp/csharp_encapsulation.htm)
 
-[Частичные классы и методы] (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
+[Частичные классы и методы](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
 
 ## Понятие программы
 
