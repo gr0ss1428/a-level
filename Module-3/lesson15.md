@@ -3,12 +3,19 @@
 ## Полезные ссылки
 
 [Необобщенные коллекции](https://metanit.com/sharp/tutorial/4.2.php)
+
 [IEnumerable](https://msdn.microsoft.com/ru-ru/library/system.collections.ienumerable(v=vs.110).aspx)
+
 [IEnumerable<T>](https://msdn.microsoft.com/ru-ru/library/9eekhta0(v=vs.110).aspx)
+
 [Интерфейсы IEnumerable & IEnumerator](https://metanit.com/sharp/tutorial/4.11.php)
+
 [IEnumerator](https://msdn.microsoft.com/ru-ru/library/system.collections.ienumerator(v=vs.110).aspx)
+
 [Итераторы и оператор yield](https://metanit.com/sharp/tutorial/4.12.php)
+
 [ArrayList](https://msdn.microsoft.com/ru-ru/library/system.collections.arraylist(v=vs.110).aspx)
+
 
 ## IEnumerable (перечисляемое)
 
