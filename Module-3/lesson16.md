@@ -22,7 +22,7 @@
 
 ## Обобщение, Generic
 
-![Generics](/Module-3/images/generics-c#.png)
+![Generics](/Module-3/images/generics-c.png)
 
 Универсальные шаблоны – они же generics.
 
