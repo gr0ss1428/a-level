@@ -6,7 +6,7 @@
 
 [Руководство по ASP.NET MVC 5](https://metanit.com/sharp/mvc5/)
 
-[ASP.NET MVC, уроки]
+[ASP.NET MVC, уроки](https://habr.com/ru/post/175999/)
 
 ## MVC 
 
