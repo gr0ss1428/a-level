@@ -2,7 +2,7 @@
 
 ## Полезные ссылки
 
-[MVC Pattern](​https://dotnet.microsoft.com/apps/aspnet/mvc)
+[MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
 
 [Руководство по ASP.NET MVC 5](https://metanit.com/sharp/mvc5/)
 
