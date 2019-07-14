@@ -1,119 +1,102 @@
-# Урок №15. Коллекции
+# Урок №15. Генерики
 
 ## Полезные ссылки
 
-[Необобщенные коллекции](https://metanit.com/sharp/tutorial/4.2.php)
+[Обобщения](https://metanit.com/sharp/tutorial/3.12.php)
 
-[IEnumerable](https://msdn.microsoft.com/ru-ru/library/system.collections.ienumerable(v=vs.110).aspx)
+[Ограничения генериков](https://metanit.com/sharp/tutorial/3.38.php)
 
-[IEnumerable<T>](https://msdn.microsoft.com/ru-ru/library/9eekhta0(v=vs.110).aspx)
+[Наследование генериков](https://metanit.com/sharp/tutorial/3.39.php)
 
-[Интерфейсы IEnumerable & IEnumerator](https://metanit.com/sharp/tutorial/4.11.php)
+[Генерики](https://docs.microsoft.com/ru-ru/dotnet/standard/generics/collections)
 
-[IEnumerator](https://msdn.microsoft.com/ru-ru/library/system.collections.ienumerator(v=vs.110).aspx)
+[Generics, Introduction](https://www.geeksforgeeks.org/c-sharp-generics-introduction/)
 
-[Итераторы и оператор yield](https://metanit.com/sharp/tutorial/4.12.php)
+![Generics](/Module-3/images/generics.png)
 
-[ArrayList](https://msdn.microsoft.com/ru-ru/library/system.collections.arraylist(v=vs.110).aspx)
+## Проблемы нетипизированных классов
 
+* Boxing/unboxing
 
-## IEnumerable (перечисляемое)
+* Небезопасность приведения типов
 
-### Коллекции
+## Обобщение, Generic
 
-![Коллекции](/Module-3/images/collections.png)
+![Generics](/Module-3/images/generics-c.png)
 
-### Пример перечисления из коробки
+Универсальные шаблоны – они же generics.
 
-for (int i = 0; i< 100;i++)
-{
- …
-}
+### Ковариантность
 
-foreach (var m in obj)
-{
-…
-}
-
-### Собственное перечисление
-
-class Parking : IEnumerable
-{
-      private Car[] cars = new Car[];
-
-      …
-
-     public IEnumerator GetEnumerator()
-     {
-           return cars.GetEnumerator();
-     }
-}
-
-### Зубчатые массивы
-
-![Jagged arrays](/Module-3/images/jagged-arrays.png)
-
-int[][] jaggedArray = new int[3][];
-jaggedArray[0] = new int[2];
-jaggedArray[0][0] = 1;
-jaggedArray[0][1] = 2;
-
-jaggedArray[1] = new int[1];
-jaggedArray[1][0] = 3;
-
-## +/- массивов
-
-* Постоянный размер
-* Строгая типизация
+var asteroid = new Asteroid();
  
-object[] array = new object[5]();
-* Boxing & Unboxing
+ICollidable collidable = asteroid;
 
-## Универсальная коллекция
+Ковариантность - совместимость назначения (assignment compatibility).
 
-**Строго типизирована!	**
+### Значения по умолчанию
 
-Использование универсальных коллекций является рекомендуемой практикой, поскольку 	
-при этом сразу же обеспечивается безопасность типов без необходимости наследования 	
-от базового типа коллекции и реализации элементов определенного типа. Типы 	универсальных коллекций 
-обычно работают лучше, чем соответствующие типы неуниверсальных коллекций 
-(и лучше, чем типы, являющиеся производными от базовых 	типов неуниверсальных коллекций), если элементами 
-коллекции являются типы значений, поскольку при использовании универсальных коллекций упаковывать элементы 
-не требуется.
+T _field = default(T);
 
-## Неуниверсальные коллекции
+* Ссылочные типы – null
+* Значимые – 0
 
-* ArrayList
-* HashTable
-* SortedList
-* Stack
-* Queue
+### Статика
 
-## Словари данных
+Статические поля создаются для каждого конкретного типа
 
-![Dictionaries](/Module-3/images/dictionaries.png)
+### Обобщенные методы
 
-* Пара ключ-значение
-* Каждый ключ уникален
-* DictionaryEntry
-* HashTable
+public double GetSumm<T> (T val)
+{
+}
 
-## LIFO (stack)
+public T GetSumm<T> (int a, int b)
+{
+}
 
-![Stack](/Module-3/images/stack.png)
+### Обобщенные интерфейсы
 
-## FIFO (queue)
+public interface IBook<T>
 
-![Queue](/Module-3/images/queue.png)
+### Ограничения генериков
 
-## YIELD
+public class Book<T> : IBook<T> where T : Book_obj
 
-Возвращает значение не выходя из метода
+* where
+* class
+* struct
+* new()
 
-![Yield](/Module-3/images/yield.png)
+### Наследование генериков
+
+* Одинаковая типизация
+* Строгая типизация предка
+
+### Универсальные коллекции
+
+Строго типизированы во время компиляции
+
+* ArrayList => List<T>
+
+* HashTable => Dictionary<T, U>
+
+* Stack => Stack<T>
+
+* Queue => Queue<T>
+
+### Строго универсальные коллекции
+
+* SortedDictionary<TKey, TValue>
+	IComparer<TKey>
+	https://professorweb.ru/my/csharp/charp_theory/level12/12_11.php
+* LinkedList<T>
+	https://professorweb.ru/my/csharp/charp_theory/level12/12_8.php
+
 
 ## Домашнее задание
 
 1. Теория
-2. Сделать класс автомобиль ( Car), параметры опциональны. Сделать класс Cars, реализующий IEnumerable.
-3. Заполнить коллекцию, делать вызовы как через foreach, так и при помощи yield
+2. Сделать обобщенной кастомную коллекцию из предыдущего занятия
+3. Сделать программку управления банковскими счетами. Счет характеризуется номером и остатком. 
+Номер может быть как числом, так и строкой.
