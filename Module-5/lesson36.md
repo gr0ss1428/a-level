@@ -1,83 +1,122 @@
-# Урок №36. ADO.NET
+# Урок №36.  Асинхронные actions, структура приложения, как подружить API и MVC, Dependency Injection
 
 ## Полезные ссылки
 
-[ADO.NET от Microsoft](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
+[Асинхронные методы](https://metanit.com/sharp/mvc5/3.8.php)
 
-[Еще немного про ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/)
+[Асинхронное программирование в приложениях ASP.NET MVC 4](https://habr.com/ru/post/142372/)
 
-[И еще немного...](https://msdn.microsoft.com/en-us/library/aa286484.aspx)
+[Using Asynchronous Methods in ASP.NET MVC 4](https://docs.microsoft.com/en-us/aspnet/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4)
 
-[Руководство по ADO.NET и работе с базами данных](https://metanit.com/sharp/adonet/)
+[DTO vs POCO vs Value Object](https://habr.com/ru/post/268371/)
 
-[Connected vs Disconnected connection modes in ADO.NET](https://www.c-sharpcorner.com/UploadFile/8a67c0/connected-vs-disconnected-architecture-in-C-Sharp/)
+[Внедрение зависимости](https://ru.wikipedia.org/wiki/%D0%92%D0%BD%D0%B5%D0%B4%D1%80%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8)
 
-## Основные понятия
+[Dependency injection](https://habr.com/ru/post/350068/)
 
-![Как это устроено?](/Module-5/images/adonet-pipeline.png)
+[Внедрение зависимостей через поля — плохая практика](https://habr.com/ru/post/334636/)
 
-**ADO.NET** предоставляет собой технологию работы с данными, которая основана на платформе .NET Framework. 
-Эта технология представляет нам набор классов, через которые мы можем отправлять запросы к базам данных, 
-устанавливать подключения, получать ответ от базы данных и производить ряд других операций.
+## Асинхронные actions
 
-Систем управления базами данных может быть несколько и они могут быть различными.
+![Async operations](/Module-4/images/async-operations.png)
 
-Основной набор объектов, используемый в ADO.NET:
+* Web Server получает поток из thread pool (рабочий поток) и планирует его для обработки запроса
 
-- Connection
-- Command
-- DataSet
-- DataReader
-- DataAdapter
+* Этот рабочий поток иницализирует асинхронную операцию.
 
-## Connected/Disconnected modes
+* Рабочий поток возвращается в thread pool для обработки нового запроса
 
-![Connected/Disconnected modes](/Module-5/images/connected-vs-disconnected-ds.png)
+* Когда асинхронная операция выполнена, ASP.NET уведомляется об этом
 
-** Disconnected mode**
+* Web server получает рабочий поток из пула (может отличаться от стартового потока) 
+для обработки остатка реквеста, включая рендеринг ответа.
 
-- Открыть соединение
-- Получить данные 
-- Закрыть соединение
+![Async pipeline](/Module-4/images/async-pipeline.png)
 
+## Практика
 
-** Connected mode ** 
+Включаем асинхронность в наших Phonebook. Что изменилось?
 
-- Открыть соединение
-- Держать соединение открытым
-- Закрыть соединение при вызове метода Close()
+## Лучшие практики программирования
 
+![Primary antipatterns](/Module-4/images/antipatterns-evolution.png)
 
-## ConnectionString (строка соединения)
+В разное время треш делали разными способами, но результат всегда впечатлял!
 
-Ваш пропуск для доступа к базе данных.
+![Shitty stuff](/Module-4/images/shitty-code.png)
 
-![Connection String](/Module-5/images/connection-string.png)
+### Слоенное приложение, разные типы моделей
 
-**Основные параметры**
+![Different models](/Module-4/images/different-models.png)
 
-- **Data Source**: название экземпляра SQL Servera, с которым будет идти взаимодействие
-- **Initial Catalog**: хранит имя базы данных
-- **Integrated Security**: задает режим аутентификации.
-- **User ID**: логин пользователя
-- **Password**: пароль пользователя
+**DTO** — это класс, содержащий данные без какой-либо логики для работы с ними. 
+DTO обычно используются для передачи данных между различными приложениями, либо между слоями 
+внутри одного приложения.
 
+**Value Object** — это полноценный член вашей доменной модели. Он подчиняется тем же правилам, что и 
+сущности (Entities). Единственное отличие между Value Object и Entity в том, что у Value Object-а 
+нет собственной идентичности. Это означает, что два Value Object-а с одинаковыми свойствами могут считаться 
+идентичными, в то время как две сущности отличаются друг от друга даже в случае 
+если их свойства полностью совпадают.
 
-## Работа с данными
+Value Object-ы могут содержать логику и обычно они не используются для передачи информации между приложениями.
 
-1. Создаем соединение
-2. Создаем экземпляр SqlCommand
-3. **Execute** или получение данных
+Понятие POCO означает использование настолько простых классов насколько возможно для моделирования предметной 
+области. Это понятие помогает придерживаться принципов YAGNI, KISS и остальных best practices. 
+POCO классы могут содержать логику.
 
-![Работа с хранимой процедурой](/Module-5/images/sp_call.png)
+![Different models](/Module-4/images/models-comparison.png)
 
-**НЕ ЗАБЫВАЕМ**
+![Different models](/Module-4/images/models-diagram.png)
 
-- Указать тип комманды - StoredProcedure
-- Передать набор параметров (при необходимости)
+## Практика
+
+Есть некоторый домен. Пусть это категория - {Id, Name}. Делаем костяк приложения для него. 
+Используем модели разных уровней.
+
+## Web API Client
+
+![Web API Client](/Module-4/images/webapi-client.png)
+
+## Практика
+
+Подключаем Phonebook API к веб-интерфейсу. Для чего в начале работ мы вынесли модели в отдельную сборку?
+
+## Dependency Injection
+
+![DI](/Module-4/images/di-general.png)
+
+![DI](/Module-4/images/di.png)
+
+Внедрение зависимостей — это стиль настройки объекта, при котором поля объекта задаются внешней сущностью. 
+Другими словами, объекты настраиваются внешними объектами. DI — это альтернатива самонастройке объектов.
+
+При настоящем внедрении зависимости объект пассивен и не предпринимает вообще никаких шагов для выяснения 
+зависимостей, а предоставляет для этого сеттеры и/или принимает своим конструктором аргументы, 
+посредством которых внедряются зависимости.
+
+![DI Workflow](/Module-4/images/di-workflow.png)
+
+Конструктор – ЗАВИСИМОСТИ ОБЯЗАТЕЛЬНЫ
+Сеттер
+Поле
+
+![Ninject](/Module-4/images/ninject.png)
+
+## Практика. 
+
+В костяк приложения для некоторых категорий внедрить Ninject.
 
 ## Домашнее задание
 
-1. Возвращаемся к проекту **Phonebook**
-2. Необходимо реализовать получение всех данных по теблицам Group, Contact, Phone
-3. Сделать отдельное представление "Телефоны", телефон должен включать в себя и контакт, и группу
+1. **Теория**
+2. Какие еще REST-клиенты есть в .NET Framework? Рассказать и объяснить отличия.
+3. Какие еще DI-контейнеры есть в .NET Framework? Рассказать и объяснить отличия.
+
+4. Расширить Phonebook
+
+* Добавить репозитории для работы с текстовыми файлами
+* Добавить уровень бизнес-логики (просто ретрансляция)
+* Связать модули через Ninject
+* Подключить API к MVC на ВСЕ операции
+* Попрактиковать валидацию, как на стороне клиента, так и на стороне API.
