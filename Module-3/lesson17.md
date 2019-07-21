@@ -1,99 +1,102 @@
-# Урок №17. События и делегаты, потоки
+# Урок №15. Генерики
 
 ## Полезные ссылки
 
-[События и делегаты](http://www.electronick.org.ua/articles/sobytiya_i_delegaty_v_yazyke_csharp/)
+[Обобщения](https://metanit.com/sharp/tutorial/3.12.php)
 
-[Делегаты и события в .NET](https://habr.com/post/198694/)
+[Ограничения генериков](https://metanit.com/sharp/tutorial/3.38.php)
 
-[Делегаты, события и лямбды](https://metanit.com/sharp/tutorial/3.13.php)
+[Наследование генериков](https://metanit.com/sharp/tutorial/3.39.php)
 
-[Delegates and Events](https://msdn.microsoft.com/en-us/library/ms235237.aspx)
+[Генерики](https://docs.microsoft.com/ru-ru/dotnet/standard/generics/collections)
 
-[События C# по-человечески](https://habr.com/post/213809/)
+[Generics, Introduction](https://www.geeksforgeeks.org/c-sharp-generics-introduction/)
 
-[Процессы](https://metanit.com/sharp/tutorial/18.1.php)
+![Generics](/Module-3/images/generics.png)
 
-[Потоки и работа с потоками](https://msdn.microsoft.com/ru-ru/library/6kac2kdh(v=vs.100).aspx)
+## Проблемы нетипизированных классов
 
-## Делегат
+* Boxing/unboxing
 
-![Delegate](/Module-3/images/delegate-detailed.png)
+* Небезопасность приведения типов
 
-* Класс
+## Обобщение, Generic
 
-* Указатель на функцию
+![Generics](/Module-3/images/generics-c.png)
 
-public delegate string FirstDelegate (int x);
-FirstDelegate d1 = new FirstDelegate(DelegateTest.StaticMethod);
-Console.WriteLine (d1(10));
+Универсальные шаблоны – они же generics.
 
-![Delegate](/Module-3/images/delegate1.png)
-![Delegate](/Module-3/images/delegate2.png)
+### Ковариантность
 
-### Ограничения делегатов
+var asteroid = new Asteroid();
+ 
+ICollidable collidable = asteroid;
 
-* Строгое соответствие сигнатуры делегата и сигнатуры функции
+Ковариантность - совместимость назначения (assignment compatibility).
 
-* Не может быть static
+### Значения по умолчанию
 
-* Invoke для вызова
+T _field = default(T);
 
-* Не наследуются!
+* Ссылочные типы – null
+* Значимые – 0
 
-## События
+### Статика
 
-![Событие](/Module-3/images/event1.png)
+Статические поля создаются для каждого конкретного типа
 
-Примеры событий в приложениях?
+### Обобщенные методы
 
-1. Объявляем делегат
+public double GetSumm<T> (T val)
+{
+}
 
-public delegate void SelectDateEventHandler(object sender, DateSelectEventArgs args);
+public T GetSumm<T> (int a, int b)
+{
+}
 
-2. Объявляем событие (экземпляр делегата)
+### Обобщенные интерфейсы
 
-public event SelectDateEventHandler SelectDateMsg;
+public interface IBook<T>
 
-3. void OnSelectDate(DateSelectEventArgs e)
+### Ограничения генериков
 
-4. void SimulateSelectDate()
+public class Book<T> : IBook<T> where T : Book_obj
 
-![Событие](/Module-3/images/event2.png)
+* where
+* class
+* struct
+* new()
 
-## Процессы и потоки
+### Наследование генериков
 
-![Событие](/Module-3/images/processes-threads.png)
+* Одинаковая типизация
+* Строгая типизация предка
 
-### Достоинства потоков
+### Универсальные коллекции
 
-* Взаимодействие по сети с веб-сервером и базой данных.
-* Выполнение операций, занимающих много времени.
-* Разделение задач по приоритетам. Например, поток с высоким приоритетом отвечает за срочные задачи, с низким приоритетом — за все остальные.
-* Сохранение возможности ответа для интерфейса пользователя при выделении времени для фоновой задачи.
+Строго типизированы во время компиляции
 
-### Недостатки потоков
+* ArrayList => List<T>
 
-* Память, используемая системой для обработки контекстных данных, необходимых в процессах, объектах AppDomain и потоках.Поэтому количество создаваемых процессов, объектов AppDomain и потоков ограничено объемом доступной памяти.
+* HashTable => Dictionary<T, U>
 
-* Время процессора, используемое для отслеживания количества потоков. Если количество потоков велико, большинство из них не будет работать должным образом. Если большинство текущих потоков находится в одном процессе, потоки других процессов планируются реже.
+* Stack => Stack<T>
 
-* Контроль выполнения кода с большим количеством потоков достаточно сложен и может являться причиной ошибок.
+* Queue => Queue<T>
 
-* При уничтожении потоков необходимо учитывать возможные проблемы и предусмотреть способы их решения.
+### Строго универсальные коллекции
 
-### Синхронизация потоков
+* SortedDictionary<TKey, TValue>
+	IComparer<TKey>
+	https://professorweb.ru/my/csharp/charp_theory/level12/12_11.php
+* LinkedList<T>
+	https://professorweb.ru/my/csharp/charp_theory/level12/12_8.php
 
-* Системные ресурсы (последовательные порты);
-
-* Ресурсы, используемые несколькими процессами (дескрипторы файлов);
-
-* Ресурсы отдельного домена приложения (глобальные, статические поля или поля экземпляров), к которым обращаются несколько потоков.
 
 ## Домашнее задание
 
 1. Теория
-2. Практика
-
-Реализовать delegate dictionary, который в зависимости от типа введенной фигуры (окружность, квадрат, прямогуольник,
-треугольник) рассчитает площадь фигуры и длину окружности.
+2. Сделать обобщенной кастомную коллекцию из предыдущего занятия
+3. Сделать программку управления банковскими счетами. Счет характеризуется номером и остатком. 
+Номер может быть как числом, так и строкой.
