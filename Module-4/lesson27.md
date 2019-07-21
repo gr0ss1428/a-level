@@ -1,4 +1,4 @@
-# Урок №25. Entity Framework. Начало.
+# Урок №27. Entity Framework. Начало.
 
 ## Полезные ссылки
 
