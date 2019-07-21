@@ -17,7 +17,7 @@
 
 ## Многоуровневое приложение
 
-![Многоуровневое приложение](/Module-5/images/3-tiers.png)
+![Многоуровневое приложение](/Module-4/images/3-tiers.png)
 
 Основная идея разделения уровней - сделать приложение более гибким, избежать повторений кода, добавить возможность повторного использования модулей.
 
@@ -27,52 +27,52 @@
 
 ## Паттерн Репозиторий
 
-![Паттерн Repository](/Module-5/images/repository.png)
+![Паттерн Repository](/Module-4/images/repository.png)
 
 Позволяет абстрагироваться от конкретных подключений к источникам данных, с которыми работает программа, и является промежуточным звеном 
 между классами, непосредственно взаимодействующими с данными, и остальной программой.
 
-![Repository implementation](/Module-5/images/repository-implementation.png)
+![Repository implementation](/Module-4/images/repository-implementation.png)
 
 Возможная реализация для CRUD-процедур.
 
 ## ORM (object-relationship mapper)
 
-![Пример на ADO.NET](/Module-5/images/adonet-sample.png)
+![Пример на ADO.NET](/Module-4/images/adonet-sample.png)
 
 Что с ним не так? Как вы думаете?
 
 - много повторяющегося кода (инициализация команд, механизм чтения данных)
 - странный механизм маппинга результатов запроса на соотвествующий класс
 
-![ORM](/Module-5/images/orm.png)
+![ORM](/Module-4/images/orm.png)
 
-![Маппинг в ORM](/Module-5/images/orm-mapping.png)
+![Маппинг в ORM](/Module-4/images/orm-mapping.png)
 
 
 ## Dapper
 
 Причем тут Stackoverflow?
 
-![Stackoverflow](/Module-5/images/so.png)
+![Stackoverflow](/Module-4/images/so.png)
 
 Как это выглядит?
 
-![Dapper ORM](/Module-5/images/dapper-orm.png)
+![Dapper ORM](/Module-4/images/dapper-orm.png)
 
 Как же в итоге изменился наш код?
 
-![Dapper code](/Module-5/images/dapper-code.png)
+![Dapper code](/Module-4/images/dapper-code.png)
 
 - И еще асинхронность из коробки!!!
 
 ## Entity Framework, очень быстрое знакомство
 
-![EF](/Module-5/images/ef-general.png)
+![EF](/Module-4/images/ef-general.png)
 
 **Основные способы генерации контекста
 
-![EF](/Module-5/images/context-creation-ways.png)
+![EF](/Module-4/images/context-creation-ways.png)
 
 - Database first - БД уже существует и мы работаем с ней
 - Code first - на основании классов, описывающих предметную область
@@ -80,13 +80,13 @@
 
 Из чего состоит наш edmx (database first)? 
 
-![EDMX](/Module-5/images/edmx-1.png)
+![EDMX](/Module-4/images/edmx-1.png)
 
 - SSDL - описание хранилища данных
 - CSDL - описание соотвествующих классов
 - MSL - маппинг
 
-![EDMX](/Module-5/images/edmx-2.png)
+![EDMX](/Module-4/images/edmx-2.png)
 
 ## Домашнее задание
 

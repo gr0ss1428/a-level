@@ -15,7 +15,7 @@
 
 ## Основные понятия
 
-![Структура реляционной базы](/Module-5/images/relational-db.png)
+![Структура реляционной базы](/Module-4/images/relational-db.png)
 
 **Тип данных** - также как и в C#, тип данных.
 
@@ -30,7 +30,7 @@
 
 Очень грубо говоря, отношение - это таблица
 
-![Отношение](/Module-5/images/relationship.png)
+![Отношение](/Module-4/images/relationship.png)
 
 ## Реляционная алгебра
 
@@ -40,7 +40,7 @@
 
 Первоначальный набор был предложен Э. Коддом в 1970-е годы.
 
-![Э. Кодд](/Module-5/images/kodd.png)
+![Э. Кодд](/Module-4/images/kodd.png)
 
 - **Объединение**
 - **Пересечение** - отношение, состоящее из кортежей, полностью входящих в состав обоих отношений. 
@@ -62,7 +62,7 @@
 - Все элементы внутри ячеек должны быть атомарными (не списками). 
 Другими словами, элемент является атомарным, если его нельзя разделить на части, которые могут использовать в таблице независимо друг от друга.
 
-![Первая нормальный форма](/Module-5/images/1nf.png)
+![Первая нормальный форма](/Module-4/images/1nf.png)
 
 ### Вторая нормальная форма (2NF) 
 
@@ -70,7 +70,7 @@
 - Таблица должна находиться в первой нормальной форме. 
 - Любое её поле, не входящее в состав первичного ключа, функционально полно зависит от первичного ключа.
 
-![Первая нормальный форма](/Module-5/images/2nf.png)
+![Первая нормальный форма](/Module-4/images/2nf.png)
 
 ### Третья нормальная форма (3NF) 
 
@@ -78,41 +78,41 @@
 - Таблица находится во второй нормальной форме. 
 - Любой её не ключевой атрибут функционально зависит только от первичного ключа.
 
-![Первая нормальный форма](/Module-5/images/3nf.png)
+![Первая нормальный форма](/Module-4/images/3nf.png)
 
 ## Основы SQL
 
 ### SELECT
 
-![SELECT](/Module-5/images/select-statement.png)
+![SELECT](/Module-4/images/select-statement.png)
 
 ### INSERT
 
-![INSERT](/Module-5/images/insert-statement.png)
+![INSERT](/Module-4/images/insert-statement.png)
 
 ### UPDATE
 
-![UPDATE](/Module-5/images/update-statement.png)
+![UPDATE](/Module-4/images/update-statement.png)
 
 ### DELETE
 
-![DELETE](/Module-5/images/delete-statement.png)
+![DELETE](/Module-4/images/delete-statement.png)
 
 ## JOINs
 
-![JOINs](/Module-5/images/joins-simple.png)
+![JOINs](/Module-4/images/joins-simple.png)
 
-![JOINs](/Module-5/images/joins-funny.png)
+![JOINs](/Module-4/images/joins-funny.png)
 
 
 ## Домашнее задание
 
-1. По такому же примеру как был в классе - импортировать данные в базу данных SQL Server из [файла](/Module-5/materials/Superstore.xls).
+1. По такому же примеру как был в классе - импортировать данные в базу данных SQL Server из [файла](/Module-4/materials/Superstore.xls).
 Нормализовать структуру и смигрировать данные.
 
 2. Реализовать структуру указанную на рисунке ниже.
 
-![ДЗ](/Module-5/images/home-task.png)
+![ДЗ](/Module-4/images/home-task.png)
 
 Заполнить тестовыми данными.
 Выполнить следующие запросы:

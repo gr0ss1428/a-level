@@ -15,7 +15,7 @@
 
 * Невозможность разделить систему на компоненты
 
-![Говнокод](/Module-4/images/shitty.png)
+![Говнокод](/Module-5/images/shitty.png)
 
 Начало 2000-х
 
@@ -29,7 +29,7 @@ I – Сегрегация интерфейсов
 
 D – Принцип инверсии зависимостей
 
-![SOLID](/Module-4/images/solid.png)
+![SOLID](/Module-5/images/solid.png)
 
 Набор практик проектирования программного кода и построения гибкой и адаптивной программы. 
 Данный термин был введен 15 лет назад известным американским специалистом в области программирования 
@@ -41,13 +41,13 @@ D – Принцип инверсии зависимостей
 
 ### SRP (Single Responsibility), принцип единой ответственности.
 
-![SRP](/Module-4/images/s-knife.png)
+![SRP](/Module-5/images/s-knife.png)
 
 **У класса должна быть только одна причина для изменения**
 
 Много причин – частые (и **неконтроллируемые**) изменения.
 
-![SRP](/Module-4/images/s-picture.png)
+![SRP](/Module-5/images/s-picture.png)
 
 **Violation**
 
@@ -58,7 +58,7 @@ D – Принцип инверсии зависимостей
 
 Программные сущности (классы, модули, функции и т.д.) должны быть открыты для расширения, но закрыты для изменения.
 
-![Open/Closed](/Module-4/images/open-closed-diagram.png)
+![Open/Closed](/Module-5/images/open-closed-diagram.png)
 
 Сущности программы должны быть открыты для расширения, но закрыты для изменения.
 
@@ -71,7 +71,7 @@ D – Принцип инверсии зависимостей
 
 ### Принцип Барбары Лисков
 
-![Liskov](/Module-4/images/liskov.png)
+![Liskov](/Module-5/images/liskov.png)
 
 Руководство по созданию иерархий наследования.
 
@@ -79,7 +79,7 @@ D – Принцип инверсии зависимостей
 
 **Должна быть возможность вместо базового типа подставить любой его подтип.**
 
-![Liskov](/Module-4/images/liskov-diagram.png)
+![Liskov](/Module-5/images/liskov-diagram.png)
 
 Инварианты (Invariants) — все условия базового класса - также должны быть сохранены и в подклассе
 
@@ -96,7 +96,7 @@ D – Принцип инверсии зависимостей
 
 ### Принцип разделения интерфейсов
 
-![Interface segregation](/Module-4/images/interface-segregation.png)
+![Interface segregation](/Module-5/images/interface-segregation.png)
 
 Нет «Божественных» объектов
 
@@ -108,7 +108,7 @@ D – Принцип инверсии зависимостей
 
 Клиенты не должны вынужденно зависеть от методов, которыми не пользуются.
 
-![Interface segregation](/Module-4/images/segregation.png)
+![Interface segregation](/Module-5/images/segregation.png)
 
 **Violation**
 
@@ -116,13 +116,13 @@ D – Принцип инверсии зависимостей
 
 ### Принцип инверсии зависимостей
 
-![Dependency inversion](/Module-4/images/dependency-inversion.png)
+![Dependency inversion](/Module-5/images/dependency-inversion.png)
 
 Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба должны зависеть от абстракции.
 
 Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.
 
-![Dependency inversion](/Module-4/images/dependency-inversion-wiki.png)
+![Dependency inversion](/Module-5/images/dependency-inversion-wiki.png)
 
 Служит для создания слабосвязанных сущностей, которые легко тестировать, модифицировать и обновлять.
 
@@ -132,7 +132,7 @@ D – Принцип инверсии зависимостей
 
 ### Шпаргалка и выводы
 
-![SOLID](/Module-4/images/solid-translation.png)
+![SOLID](/Module-5/images/solid-translation.png)
 
 ## Практика
 
