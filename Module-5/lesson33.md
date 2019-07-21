@@ -25,25 +25,25 @@
 
 ## Что такое веб-сайт? 
 
-![Веб-сайт](/Module-4/images/http-request.png)
+![Веб-сайт](/Module-5/images/http-request.png)
 
 ## Запрос "под капотом"
 
-![Запрос](/Module-4/images/http-requeest-under-the-hood.png)
+![Запрос](/Module-5/images/http-requeest-under-the-hood.png)
 
 ## Из чего состоит сайт
 
-![Веб-сайт](/Module-4/images/site-example.png)
+![Веб-сайт](/Module-5/images/site-example.png)
 
 HTTP (англ. HyperText Transfer Protocol — «протокол передачи гипертекста») — протокол прикладного уровня 
 передачи данных (изначально — в виде гипертекстовых документов в формате «HTML», 
 в настоящий момент используется для передачи произвольных данных).
 
-![HTTP](/Module-4/images/http-protocol.png)
+![HTTP](/Module-5/images/http-protocol.png)
 
 **Из чего состоит веб-страница?**
 
-![Веб-страница](/Module-4/images/web-page-consists-of.png)
+![Веб-страница](/Module-5/images/web-page-consists-of.png)
 
 ## Tag <form>
 
@@ -78,11 +78,11 @@ HTTP (англ. HyperText Transfer Protocol — «протокол перед
 
 ## MVC pattern
 
-![MVC](/Module-4/images/mvc-pattern.png)
+![MVC](/Module-5/images/mvc-pattern.png)
 
 ### MVC vs Web Forms
 
-![MVC vs Web Forms](/Module-4/images/asp.net.png)
+![MVC vs Web Forms](/Module-5/images/asp.net.png)
 
 ## Домашнее задание
 
@@ -90,4 +90,4 @@ HTTP (англ. HyperText Transfer Protocol — «протокол перед
 
 2. Решить квадратное уравнение на MVC/Web Forms
 
-![ДЗ](/Module-4/images/square-equation.png)
+![ДЗ](/Module-5/images/square-equation.png)

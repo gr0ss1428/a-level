@@ -16,7 +16,7 @@
 
 ## Запуск сайта на IIS
 
-![HTTP request](/Module-4/images/http-requeest-under-the-hood.png)
+![HTTP request](/Module-5/images/http-requeest-under-the-hood.png)
 
 Наш веб-сервер - IIS.
 
@@ -24,11 +24,11 @@ IIS — проприетарный набор серверов для неско
 IIS распространяется с Windows NT. Основным компонентом IIS является веб-сервер, который позволяет размещать 
 в Интернете сайты. IIS поддерживает протоколы HTTP, HTTPS, FTP, POP3, SMTP, NNTP.
 
-![IIS Request](/Module-4/images/iis-request-processing.png)
+![IIS Request](/Module-5/images/iis-request-processing.png)
 
 ### Установка IIS
 
-![Установка IIS](/Module-4/images/iis-setup.png)
+![Установка IIS](/Module-5/images/iis-setup.png)
 
 ### Настройка сайта
 
@@ -46,7 +46,7 @@ IIS распространяется с Windows NT. Основным компо�
 
 ## Форматирование результата
 
-![Formatters](/Module-4/images/web-api-formatters.png)
+![Formatters](/Module-5/images/web-api-formatters.png)
 
 * **FormUrlEncodedFormatter** – возвращает объект, который парсит данные формы в процессе привязки модели
 * **JsonFormatter** – сериализует данные в JSON
@@ -62,9 +62,9 @@ IIS распространяется с Windows NT. Основным компо�
 несколько типов HTTP-запросов (GET, POST, PUT и т.д.) Исключаются те методы действия, для которых не подходит 
 HTTP-запрос.
 
-![Routing](/Module-4/images/routing-1.png)
+![Routing](/Module-5/images/routing-1.png)
 
-![Routing](/Module-4/images/routing-2.png)
+![Routing](/Module-5/images/routing-2.png)
 
 2. Если данные маршрута не содержат ключ "action", тогда метод действия будет найден по HTTP-запросу.
 3. Для выбранных действий в обоих шагах, производится проверка на соответствие параметров. Исключаются все действия, которые не соответствуют всем параметрам в данных маршрута.
@@ -72,7 +72,7 @@ HTTP-запрос.
 Если методов осталось больше одного, выдается ошибка HTTP 500. (Внутренняя ошибка HttpResponseException)
 Если методов не осталось совсем, то возвращается ошибка HTTP 404.
 
-![HttpRoutingDispatcher](/Module-4/images/http-routing-dispatcher.png)
+![HttpRoutingDispatcher](/Module-5/images/http-routing-dispatcher.png)
 
 Роутинг в Web API реализован классом HttpRoute.
 
@@ -96,7 +96,7 @@ HTTP-запрос.
 
 “api/products” или “api/products/5”
 
-![Routing](/Module-4/images/routing-default.png)
+![Routing](/Module-5/images/routing-default.png)
 
 Используемый шаблон
 
@@ -106,11 +106,11 @@ HTTP-запрос.
 
 “api/products/getproduct”
 
-![Routing](/Module-4/images/routing-custom.png)
+![Routing](/Module-5/images/routing-custom.png)
 
 В маршруте могут быть заданы дефолтные параметры
 
-![Routing](/Module-4/images/routing-default-params.png)
+![Routing](/Module-5/images/routing-default-params.png)
 
 **[NonAction]** – метод больше не сопоставляется с подходящим маршрутом
 
@@ -142,34 +142,34 @@ HTTP-запрос.
 
 * **RegexRouteConstraint** – сегмент должен соответствовать регулярному выражению
 
-![Routing Restrictions](/Module-4/images/route-restrictions.png)
+![Routing Restrictions](/Module-5/images/route-restrictions.png)
 
 ### Применение кастомного роутинга
 
-![Routing Attributes](/Module-4/images/routing-through-attributes.png)
+![Routing Attributes](/Module-5/images/routing-through-attributes.png)
 
 ## Action Filters
 
 Иногда нам необходимо добавить некоторую логику до или после выполнения метода action.
 
-![Action Filters](/Module-4/images/filters-general.png)
+![Action Filters](/Module-5/images/filters-general.png)
 
 ### Типы Action Filters
 
-![Action Filters](/Module-4/images/action-filters-types-1.png)
-![Action Filters](/Module-4/images/action-filters-types-2.png)
+![Action Filters](/Module-5/images/action-filters-types-1.png)
+![Action Filters](/Module-5/images/action-filters-types-2.png)
 
 ### AllowMultiple property
 
-![AllowMultiple](/Module-4/images/aloow-multiple-property.png)
+![AllowMultiple](/Module-5/images/aloow-multiple-property.png)
 
 ### Жизненный цикл  Action Filters
 
-![Action Filters](/Module-4/images/action-filters-pipeline.png)
+![Action Filters](/Module-5/images/action-filters-pipeline.png)
 
 ### Authentication Filters
 
-![Authentication Filters](/Module-4/images/iauthentication-filter.png)
+![Authentication Filters](/Module-5/images/iauthentication-filter.png)
 
 Метод **AuthenticateAsync** вызывается до обработки запроса аутентификации пользователя.
 
@@ -177,26 +177,26 @@ HTTP-запрос.
 
 ### Authorization Filters
 
-![Authorization Filters](/Module-4/images/authorization-filter.png)
+![Authorization Filters](/Module-5/images/authorization-filter.png)
 
 Цель фильтров авторизации – определение роли в системе аутентифицированного пользователя.
 
-![Authorization Filters](/Module-4/images/iauthorization-filter.png)
+![Authorization Filters](/Module-5/images/iauthorization-filter.png)
 
 ### Фильтры действий
 
-![Action Filters](/Module-4/images/iactionfilter.png)
+![Action Filters](/Module-5/images/iactionfilter.png)
 
 **actionContext** содержит информацию о методе контроллера,а также информацию о  запросе.
 
-![Action Filters](/Module-4/images/actionfilterattribute.png)
+![Action Filters](/Module-5/images/actionfilterattribute.png)
 
 **OnActionExecutingAsync** – до выполнения action
 **OnActionExecutedAsync** – после выполнения action
 
 ### Фильтры исключения
 
-![Exception Filters](/Module-4/images/exception-filter.png)
+![Exception Filters](/Module-5/images/exception-filter.png)
 
 ### Глобальные фильтры
 
@@ -206,7 +206,7 @@ HTTP-запрос.
 * Контроллер
 * Все приложение (глобальный фильтр)
 
-![Global Filters](/Module-4/images/global-filters.png)
+![Global Filters](/Module-5/images/global-filters.png)
 
 ### Переопределение фильтров
 

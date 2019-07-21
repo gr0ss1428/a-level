@@ -15,7 +15,7 @@
 
 [Table-per-Concrete-Type](https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-3-table-per-concrete-type-tpc-and-choosing-strategy-guidelines)
 
-![Маст рид, маст рид](/Module-5/images/julia-lerman.png)
+![Маст рид, маст рид](/Module-4/images/julia-lerman.png)
 
 ## Entity Framework, основные подходы
 
@@ -25,7 +25,7 @@
 - Требования к оптимальности структуры базы данных
 - Что меняется первым - база данных или модели?
 
-![EF approaches](/Module-5/images/ef-approaches.png)
+![EF approaches](/Module-4/images/ef-approaches.png)
 
 - Database first - БД уже существует и мы работаем с ней
 - Code first - на основании классов, описывающих предметную область
@@ -34,7 +34,7 @@
 
  Что делать, если нам необходимы некоторые изменения в автогенеренных моделях? Каждый раз Т4 сгенерирует их заново.
 
-![Partial classes](/Module-5/images/partial-classes.png)
+![Partial classes](/Module-4/images/partial-classes.png)
 
 - Генерализация (общий признак)
 - Упрощение обработки
@@ -42,11 +42,11 @@
 
 ## Code First
 
-![Code First](/Module-5/images/code-first-approach.png)
+![Code First](/Module-4/images/code-first-approach.png)
 
 Мы начинаем со структуры классов.
 
-![Code First Context Example](/Module-5/images/code-first-context-example.png)
+![Code First Context Example](/Module-4/images/code-first-context-example.png)
 
 Он не содержит ранее рассмотренных SSD/CSDL/MSL. 
 
@@ -78,7 +78,7 @@
 | Property Configurations | HasColumnType() | Тип данных |
 | Property Configurations | HasColumnName() | Имя столбца |
 
-![Пример контекста в Code First](/Module-5/images/code-first-context-example2.png)
+![Пример контекста в Code First](/Module-4/images/code-first-context-example2.png)
 
 ## Миграции
 
@@ -86,7 +86,7 @@
 
 **Нежелательно менять структуру базы данных.**
 
-![Migrations](/Module-5/images/migrations-scheme.png)
+![Migrations](/Module-4/images/migrations-scheme.png)
 
 **Nuget Package Manager Console**
 
@@ -99,7 +99,7 @@ Entity Framework предлагает несколько базовых стра
 
 ### Table-per-Hierarchy
 
-![TPH](/Module-5/images/table-per-hierarchy.png)
+![TPH](/Module-4/images/table-per-hierarchy.png)
 
 - Одна таблица для всей иерархии
 - Сомнительная нормализация
@@ -107,7 +107,7 @@ Entity Framework предлагает несколько базовых стра
 
 ### Table-per-Type
 
-![TPT](/Module-5/images/table-per-type.png)
+![TPT](/Module-4/images/table-per-type.png)
 
 - Структура таблиц соотвествует иерархии классов
 - Нормализована
@@ -115,7 +115,7 @@ Entity Framework предлагает несколько базовых стра
 
 ### Table-per-Type
 
-![TPT](/Module-5/images/table-per-type.png)
+![TPT](/Module-4/images/table-per-type.png)
 
 - Структура таблиц соотвествует иерархии классов
 - Нормализована
@@ -124,7 +124,7 @@ Entity Framework предлагает несколько базовых стра
 
 ### Table-per-ConcreteType
 
-![TPT](/Module-5/images/table-per-concrete-type.png)
+![TPT](/Module-4/images/table-per-concrete-type.png)
 
 - Нет абстрактных классов
 - Только фактические классы

@@ -19,7 +19,7 @@
 
 **Время на задачу - 2.5 часа!**
 
-![Speed](/Module-4/images/speed.png)
+![Speed](/Module-5/images/speed.png)
 
 **Скорость важна**.
 

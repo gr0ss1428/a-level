@@ -14,7 +14,7 @@
 
 ## Основные понятия
 
-![Как это устроено?](/Module-5/images/adonet-pipeline.png)
+![Как это устроено?](/Module-4/images/adonet-pipeline.png)
 
 **ADO.NET** предоставляет собой технологию работы с данными, которая основана на платформе .NET Framework. 
 Эта технология представляет нам набор классов, через которые мы можем отправлять запросы к базам данных, 
@@ -32,7 +32,7 @@
 
 ## Connected/Disconnected modes
 
-![Connected/Disconnected modes](/Module-5/images/connected-vs-disconnected-ds.png)
+![Connected/Disconnected modes](/Module-4/images/connected-vs-disconnected-ds.png)
 
 ** Disconnected mode**
 
@@ -52,7 +52,7 @@
 
 Ваш пропуск для доступа к базе данных.
 
-![Connection String](/Module-5/images/connection-string.png)
+![Connection String](/Module-4/images/connection-string.png)
 
 **Основные параметры**
 
@@ -69,7 +69,7 @@
 2. Создаем экземпляр SqlCommand
 3. **Execute** или получение данных
 
-![Работа с хранимой процедурой](/Module-5/images/sp_call.png)
+![Работа с хранимой процедурой](/Module-4/images/sp_call.png)
 
 **НЕ ЗАБЫВАЕМ**
 
