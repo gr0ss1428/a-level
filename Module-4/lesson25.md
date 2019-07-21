@@ -1,104 +1,83 @@
-# Урок №25. Entity Framework. Начало.
+# Урок №23. ADO.NET
 
 ## Полезные ссылки
 
+[ADO.NET от Microsoft](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 
-[Entity Framework Tutorial](https://www.entityframeworktutorial.net/)
+[Еще немного про ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/)
 
-[Relationships, navigation properties and foreign keys](https://docs.microsoft.com/en-us/ef/ef6/fundamentals/relationships)
+[И еще немного...](https://msdn.microsoft.com/en-us/library/aa286484.aspx)
 
-![EF Intro](/Module-5/images/ef-intro.png)
+[Руководство по ADO.NET и работе с базами данных](https://metanit.com/sharp/adonet/)
 
-## Entity Framework, очень быстрое знакомство
+[Connected vs Disconnected connection modes in ADO.NET](https://www.c-sharpcorner.com/UploadFile/8a67c0/connected-vs-disconnected-architecture-in-C-Sharp/)
 
-![EF](/Module-5/images/ef-general.png)
+## Основные понятия
 
-**Основные способы генерации контекста
+![Как это устроено?](/Module-5/images/adonet-pipeline.png)
 
-![EF](/Module-5/images/context-creation-ways.png)
+**ADO.NET** предоставляет собой технологию работы с данными, которая основана на платформе .NET Framework. 
+Эта технология представляет нам набор классов, через которые мы можем отправлять запросы к базам данных, 
+устанавливать подключения, получать ответ от базы данных и производить ряд других операций.
 
-- Database first - БД уже существует и мы работаем с ней
-- Code first - на основании классов, описывающих предметную область
-- Model first
+Систем управления базами данных может быть несколько и они могут быть различными.
 
-Из чего состоит наш edmx (database first)? 
+Основной набор объектов, используемый в ADO.NET:
 
-![EDMX](/Module-5/images/edmx-1.png)
+- Connection
+- Command
+- DataSet
+- DataReader
+- DataAdapter
 
-- SSDL - описание хранилища данных
-- CSDL - описание соотвествующих классов
-- MSL - маппинг
+## Connected/Disconnected modes
 
-![EDMX](/Module-5/images/edmx-2.png)
+![Connected/Disconnected modes](/Module-5/images/connected-vs-disconnected-ds.png)
 
-## Navigation Properties
+** Disconnected mode**
 
-Отношения (связи) внутри нашей БД переносятся в нашу модель. Модель является логической.
+- Открыть соединение
+- Получить данные 
+- Закрыть соединение
 
-Наш проект Phonebook имеет следующую физическую модель данных.
 
-![Phonebook, физическая модель данных](/Module-5/images/phonebook-physicalmodel.png)
+** Connected mode ** 
 
-Модель включает в себя отношения один-ко-многим и одну разбивающую сущность.
+- Открыть соединение
+- Держать соединение открытым
+- Закрыть соединение при вызове метода Close()
 
-После генерации модели из базы данных мы можем увидеть следующую модель данных в контексте .NET-приложения.
 
-![Phonebook, логическая модель данных](/Module-5/images/phonebook-logicalmodel.png)
+## ConnectionString (строка соединения)
 
-Вернемся в студию и посмотрим MSL, описывающий наши связи.
+Ваш пропуск для доступа к базе данных.
 
-Обратим еще раз внимание на нашу логическую модель. Связь между сущностями плавно транспонируется в Navigation Properties, 
-ссылку на связанный объект (коллекцию объектов).
+![Connection String](/Module-5/images/connection-string.png)
 
-![Phonebook, логическая модель данных](/Module-5/images/phonebook-logicalmodel-navigationproperties.png)
+**Основные параметры**
 
-Как работают Navigation Properties под капотом.
+- **Data Source**: название экземпляра SQL Servera, с которым будет идти взаимодействие
+- **Initial Catalog**: хранит имя базы данных
+- **Integrated Security**: задает режим аутентификации.
+- **User ID**: логин пользователя
+- **Password**: пароль пользователя
 
-![Navigation properties, как это устроено](/Module-5/images/navigation-properties-how-does-it-work.png)
 
-## Понятие контекста
+## Работа с данными
 
-Для кооперации с базой данных нам необходимо понятие контекста.
+1. Создаем соединение
+2. Создаем экземпляр SqlCommand
+3. **Execute** или получение данных
 
-![Базовое понятие контекста](/Module-5/images/context-general.png)
+![Работа с хранимой процедурой](/Module-5/images/sp_call.png)
 
-Грубо говоря, контекст - это полная картинка. В контексте :-) .NET, мы используем контекст следующим образом
+**НЕ ЗАБЫВАЕМ**
 
-![Контекст в EF](/Module-5/images/ef-context.png)
-
-### Основные функции контекста
-
-![Основные функции контекста](/Module-5/images/context-tasks.png)
-
-- Управление запросами
-- Управление изменениями
-- Уровень доступа к данным
-- Управление отношениями внутри модели
-- Кеширование
-- Транзакции
-- Материализация объектов
-
-![Пример кода контекста](/Module-5/images/context-code-sample.png)
-
-## Состояния модели внутри контекста
-
-![Entity Framework API](/Module-5/images/entity-framework-api.png)
-
-- Added **(INSERT)**
-- Modified **(UPDATE)**
-- Deleted **(DELETE)**
-- Unchanged
-- Detached
-
-![Entity Framework API](/Module-5/images/model-states-queries.png)
-
-## SaveChanges() - сохраняем наши изменения
-
-![Сохранение изменений](/Module-5/images/save-changes.png)
-
-![Пример кода с SaveChanges](/Module-5/images/save-changes-source.png)
+- Указать тип комманды - StoredProcedure
+- Передать набор параметров (при необходимости)
 
 ## Домашнее задание
 
 1. Возвращаемся к проекту **Phonebook**
-2. Реализуем все CRUD-операции в новом репозитории, построенном с помощью EntityFramework, Dayabase First
+2. Необходимо реализовать получение всех данных по теблицам Group, Contact, Phone
+3. Сделать отдельное представление "Телефоны", телефон должен включать в себя и контакт, и группу
