@@ -1,4 +1,4 @@
-# Урок №36.  Асинхронные actions, структура приложения, как подружить API и MVC, Dependency Injection
+# Урок №42.  Асинхронные actions, структура приложения, как подружить API и MVC, Dependency Injection
 
 ## Полезные ссылки
 
