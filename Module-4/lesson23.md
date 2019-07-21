@@ -1,93 +1,83 @@
-# Урок №23. ASP.NET
+# Урок №23. ADO.NET
 
 ## Полезные ссылки
 
-[HTTP](https://ru.wikipedia.org/wiki/HTTP​)
+[ADO.NET от Microsoft](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 
-[HTTP](https://developer.mozilla.org/ru/docs/Web/HTTP/Overview​)
+[Еще немного про ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/)
 
-[HTTP Methods](https://developer.mozilla.org/ru/docs/Web/HTTP/Methods​)
+[И еще немного...](https://msdn.microsoft.com/en-us/library/aa286484.aspx)
 
-[HTML Tags](https://www.w3schools.com/tags/​)
+[Руководство по ADO.NET и работе с базами данных](https://metanit.com/sharp/adonet/)
 
-[CSS](https://cssreference.io/​)
+[Connected vs Disconnected connection modes in ADO.NET](https://www.c-sharpcorner.com/UploadFile/8a67c0/connected-vs-disconnected-architecture-in-C-Sharp/)
 
-[JavaScript](https://www.udemy.com/javascript-essentials/​)
+## Основные понятия
 
-[Изучаем JavaScript](https://medium.com/javascript-scene/learn-javascript-b631a4af11f2​)
+![Как это устроено?](/Module-5/images/adonet-pipeline.png)
 
-[Model-View-Controller pattern](https://ru.wikipedia.org/wiki/Model-View-Controller)
+**ADO.NET** предоставляет собой технологию работы с данными, которая основана на платформе .NET Framework. 
+Эта технология представляет нам набор классов, через которые мы можем отправлять запросы к базам данных, 
+устанавливать подключения, получать ответ от базы данных и производить ряд других операций.
 
-[HTML Input Controls](https://msdn.microsoft.com/ru-ru/library/s7csdtts(v=vs.100).aspx)
+Систем управления базами данных может быть несколько и они могут быть различными.
 
-[FORM tag](https://www.w3schools.com/tags/tag_form.asp​)
+Основной набор объектов, используемый в ADO.NET:
+
+- Connection
+- Command
+- DataSet
+- DataReader
+- DataAdapter
+
+## Connected/Disconnected modes
+
+![Connected/Disconnected modes](/Module-5/images/connected-vs-disconnected-ds.png)
+
+** Disconnected mode**
+
+- Открыть соединение
+- Получить данные 
+- Закрыть соединение
 
 
-## Что такое веб-сайт? 
+** Connected mode ** 
 
-![Веб-сайт](/Module-4/images/http-request.png)
+- Открыть соединение
+- Держать соединение открытым
+- Закрыть соединение при вызове метода Close()
 
-## Запрос "под капотом"
 
-![Запрос](/Module-4/images/http-requeest-under-the-hood.png)
+## ConnectionString (строка соединения)
 
-## Из чего состоит сайт
+Ваш пропуск для доступа к базе данных.
 
-![Веб-сайт](/Module-4/images/site-example.png)
+![Connection String](/Module-5/images/connection-string.png)
 
-HTTP (англ. HyperText Transfer Protocol — «протокол передачи гипертекста») — протокол прикладного уровня 
-передачи данных (изначально — в виде гипертекстовых документов в формате «HTML», 
-в настоящий момент используется для передачи произвольных данных).
+**Основные параметры**
 
-![HTTP](/Module-4/images/http-protocol.png)
+- **Data Source**: название экземпляра SQL Servera, с которым будет идти взаимодействие
+- **Initial Catalog**: хранит имя базы данных
+- **Integrated Security**: задает режим аутентификации.
+- **User ID**: логин пользователя
+- **Password**: пароль пользователя
 
-**Из чего состоит веб-страница?**
 
-![Веб-страница](/Module-4/images/web-page-consists-of.png)
+## Работа с данными
 
-## Tag <form>
+1. Создаем соединение
+2. Создаем экземпляр SqlCommand
+3. **Execute** или получение данных
 
-Тег <form> устанавливает форму на веб-странице
+![Работа с хранимой процедурой](/Module-5/images/sp_call.png)
 
-Форма предназначена для обмена данными между пользователем и сервером.
+**НЕ ЗАБЫВАЕМ**
 
-Документ может содержать любое количество форм, но одновременно на сервер может быть отправлена 
-только одна форма. По этой причине данные форм должны быть независимы друг от друга.
-
-### Атрибуты
-
-* accept-charset – кодировка в которой сервер принимает и обрабатывает данные
-
-* action – адрес программы или документа для обработки запроса
-
-* autocomplete – включает автозаполнение формы
-
-* enctype – способ кодирования данных формы
-
-* method – метод протокола HTTP
-
-* name – название формы
-
-* novalidate – отменяет встроенную проверку данных формы
-
-* target – имя окна или фрейма куда будет возвращаться результат
-
-## Немного практики, ASP.NET
-
-Делаем форму, в которой некоторый текст появится по нажатию кнопки.
-
-## MVC pattern
-
-![MVC](/Module-4/images/mvc-pattern.png)
-
-### MVC vs Web Forms
-
-![MVC vs Web Forms](/Module-4/images/asp.net.png)
+- Указать тип комманды - StoredProcedure
+- Передать набор параметров (при необходимости)
 
 ## Домашнее задание
 
-1. **Теория**
-
-2. Решить квадратное уравнение на MVC/Web Forms
-
-![ДЗ](/Module-4/images/square-equation.png)
+1. Возвращаемся к проекту **Phonebook**
+2. Необходимо реализовать получение всех данных по теблицам Group, Contact, Phone
+3. Сделать отдельное представление "Телефоны", телефон должен включать в себя и контакт, и группу

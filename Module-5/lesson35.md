@@ -1,89 +1,235 @@
-# Урок №35. Объекты базы данных
+# Урок №35. Web API, IIS
 
 ## Полезные ссылки
 
-[Создание объектов базы данных](https://docs.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-2017)
+[IIS Setup](https://manage.accuwebhosting.com/knowledgebase/2886/How-to-configure-IIS-to-access-website-using-IP-address.html)
 
-[Представления](https://docs.microsoft.com/en-us/sql/relational-databases/views/views?view=sql-server-2017)
+[Маршрутизация в Web API](https://metanit.com/sharp/aspnet_webapi/3.1.php)
 
-[Хранимые процедуры](https://www.mssqltips.com/sqlservertutorial/160/sql-server-stored-procedure-tutorial/)
+[Attribute Routing in ASP.NET Web API 2](https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2)
 
-[Stored procedures in SQL Server](https://www.w3schools.com/sql/sql_stored_procedures.asp)
+[Список кодов состояния HTTP](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP)
 
-[Triggers in SQL Server](https://www.mssqltips.com/sqlservertutorial/2911/create-sql-server-trigger/)
+[Фильтры](https://metanit.com/sharp/aspnet_webapi/4.1.php)
 
+[Authentication filters](https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-filters)
 
-## Основные понятия
+## Запуск сайта на IIS
 
-![Объекты базы данных](/Module-5/images/database-objects.png)
+![HTTP request](/Module-4/images/http-requeest-under-the-hood.png)
 
-**Объект базы данных** - любой определенный объект в базе данных, используемый для хранения/получения данных.
-Примерами объектов являются таблицы, представления, кластеры, последовательности, индексы и синонимы.
-Таблица - основной, по умолчанию, объект базы данных.
+Наш веб-сервер - IIS.
 
+IIS — проприетарный набор серверов для нескольких служб Интернета от компании Microsoft. 
+IIS распространяется с Windows NT. Основным компонентом IIS является веб-сервер, который позволяет размещать 
+в Интернете сайты. IIS поддерживает протоколы HTTP, HTTPS, FTP, POP3, SMTP, NNTP.
 
-### Представление (View)
+![IIS Request](/Module-4/images/iis-request-processing.png)
 
-Очень грубо говоря, представление - это виртуальная таблица.
+### Установка IIS
 
-![Представление](/Module-5/images/view.png)
+![Установка IIS](/Module-4/images/iis-setup.png)
 
-В отличии от обычных стандартных таблиц в базе данных представления содержат запросы, которые динамически извлекают используемые данные из других таблиц/представлений/функций.
+### Настройка сайта
 
-Представления дают нам следующий набор преимуществ:
+## Практика
 
-- Упрощают комплексные запросы и позволяют соблюсти **DRY**
-- Способствуют инкапсуляции и дополнительной защите данных путем ограничения доступа собственно к таблице
-- Пзволяют возвращать отформатированные нужным образом данные 
+Деплоим на IIS - Phonebook & Phonebook.API. Для обоих вариантов используем именнованный инстанс.
 
-### Хранимая процедура
+## Коды ответов HTTP
 
-![Хранимая процедура](/Module-5/images/stored-procedure-main.png)
+* **200** - OK
+* **400** - Bad Request
+* **401** - нет доступа
+* **404** - не найден
+* **500** - внутренняя ошибка сервера
 
-Набор инструкций рассматриваемый как одно целое. 
+## Форматирование результата
 
-- Увеличивает производительноссть засчет оптимизированного плана запроса.
+![Formatters](/Module-4/images/web-api-formatters.png)
 
-![Хранимая процедура](/Module-5/images/stored-procedure-syntax.png)
+* **FormUrlEncodedFormatter** – возвращает объект, который парсит данные формы в процессе привязки модели
+* **JsonFormatter** – сериализует данные в JSON
+* **XmlFormatter** – сериализует данные в XML
 
-### Функция
+## Routing (маршрутизация)
 
-![Отличия функции от храимой процедуры](/Module-5/images/functions-vs-sps.png)
+### Как это работает?
 
+1. Если данные маршрута содержат ключ "action", то метод действия будет искаться по значению этого ключа. 
+В отличии от ASP.NET MVC, в основном маршруты Web API не используют имена методов действия в маршрутизации.
+Собираются все методы действия, у которых имя совпадает со значением ключа «action» Каждый метод действия может поддерживать один или 
+несколько типов HTTP-запросов (GET, POST, PUT и т.д.) Исключаются те методы действия, для которых не подходит 
+HTTP-запрос.
 
-### Триггер
+![Routing](/Module-4/images/routing-1.png)
 
-![Триггер](/Module-5/images/triggers.png)
+![Routing](/Module-4/images/routing-2.png)
 
-Триггеры представляют специальный тип хранимой процедуры, которая вызывается автоматически при выполнении определенного действия 
-над таблицей или представлением, в частности, при добавлении, изменении или удалении данных, то есть при выполнении команд INSERT, UPDATE, DELETE.
+2. Если данные маршрута не содержат ключ "action", тогда метод действия будет найден по HTTP-запросу.
+3. Для выбранных действий в обоих шагах, производится проверка на соответствие параметров. Исключаются все действия, которые не соответствуют всем параметрам в данных маршрута.
+4. Исключаются методы действия, которые имеют атрибут "NonAction". 
+Если методов осталось больше одного, выдается ошибка HTTP 500. (Внутренняя ошибка HttpResponseException)
+Если методов не осталось совсем, то возвращается ошибка HTTP 404.
 
-**Чем-то похоже на события в C#**
+![HttpRoutingDispatcher](/Module-4/images/http-routing-dispatcher.png)
 
+Роутинг в Web API реализован классом HttpRoute.
 
-## Индексы
+* **RouteTemplate** – шаблон URL
 
-### Общая информация
+* **Defaults** – словарь из набора параметров и их значений (Dictionary<string, object>)
 
-![Индексы, общая информация](/Module-5/images/indexes-general.png)
+* **Constraints** – ограничения маршрута (Dictionary<string, object>)
 
-### Кластеризованные
+* **DataTokens**
 
-![Кластеризованные индексы](/Module-5/images/clustered-indexes.png)
+* **Handlers** – обработчик маршрута
 
-- **Кластеризованный индекс** хранит реальные строки данных в листьях индекса.
-- **Кластеризованные индексы** сортируют и хранят строки данных в таблицах или представлениях на основе их ключевых значений.
-- Строки данных в таблице хранятся в порядке сортировки только в том случае, если таблица содержит **кластеризованный индекс**.
+### Управление маршрутами
 
-### Некластеризованные
+Используемый шаблон
 
-![Некластеризованные индексы](/Module-5/images/non-clustered-indexes.png)
+«api/{controller}/{id}»
 
-- **Некластеризованные индексы** имеют структуру, отдельную от строк данных. В некластеризованном индексе содержатся значения ключа **некластеризованного индекса**, и каждая запись значения ключа содержит указатель на строку данных, содержащую значение ключа.
-- Указатель из строки индекса в **некластеризованном индексе**, который указывает на строку данных, называется указателем строки.
+Может соответствовать
+
+“api/products” или “api/products/5”
+
+![Routing](/Module-4/images/routing-default.png)
+
+Используемый шаблон
+
+«api/{controller}/{action}»
+
+Может соответствовать
+
+“api/products/getproduct”
+
+![Routing](/Module-4/images/routing-custom.png)
+
+В маршруте могут быть заданы дефолтные параметры
+
+![Routing](/Module-4/images/routing-default-params.png)
+
+**[NonAction]** – метод больше не сопоставляется с подходящим маршрутом
+
+### Ограничения маршрутов
+
+* **AlphaRouteConstraint** – сегмент состоит только из алфавитных символов
+
+* **BoolRouteConstraint**
+
+* **DateTimeRouteConstraint**
+
+* **DecimalRouteConstraint**
+
+* **DoubleRouteConstraint**
+
+* **FloatRouteConstraint**
+
+* **IntRouteConstraint**
+
+* **LongRouteConstraint**
+
+* **HttpMethodConstraint** – ограничение по методу HTTP-запроса
+
+* **MaxLengthConstraint**
+
+* **MinLengthConstraint**
+
+* **RangeRouteConstraint**
+
+* **RegexRouteConstraint** – сегмент должен соответствовать регулярному выражению
+
+![Routing Restrictions](/Module-4/images/route-restrictions.png)
+
+### Применение кастомного роутинга
+
+![Routing Attributes](/Module-4/images/routing-through-attributes.png)
+
+## Action Filters
+
+Иногда нам необходимо добавить некоторую логику до или после выполнения метода action.
+
+![Action Filters](/Module-4/images/filters-general.png)
+
+### Типы Action Filters
+
+![Action Filters](/Module-4/images/action-filters-types-1.png)
+![Action Filters](/Module-4/images/action-filters-types-2.png)
+
+### AllowMultiple property
+
+![AllowMultiple](/Module-4/images/aloow-multiple-property.png)
+
+### Жизненный цикл  Action Filters
+
+![Action Filters](/Module-4/images/action-filters-pipeline.png)
+
+### Authentication Filters
+
+![Authentication Filters](/Module-4/images/iauthentication-filter.png)
+
+Метод **AuthenticateAsync** вызывается до обработки запроса аутентификации пользователя.
+
+Метод **ChallengeAsync** вызывается во время обработки ответа Клиенту.
+
+### Authorization Filters
+
+![Authorization Filters](/Module-4/images/authorization-filter.png)
+
+Цель фильтров авторизации – определение роли в системе аутентифицированного пользователя.
+
+![Authorization Filters](/Module-4/images/iauthorization-filter.png)
+
+### Фильтры действий
+
+![Action Filters](/Module-4/images/iactionfilter.png)
+
+**actionContext** содержит информацию о методе контроллера,а также информацию о  запросе.
+
+![Action Filters](/Module-4/images/actionfilterattribute.png)
+
+**OnActionExecutingAsync** – до выполнения action
+**OnActionExecutedAsync** – после выполнения action
+
+### Фильтры исключения
+
+![Exception Filters](/Module-4/images/exception-filter.png)
+
+### Глобальные фильтры
+
+Области видимости фильтра:
+
+* Метод (action)
+* Контроллер
+* Все приложение (глобальный фильтр)
+
+![Global Filters](/Module-4/images/global-filters.png)
+
+### Переопределение фильтров
+
+Отключает действие фильтра для определенного метода.
+
+Встроенные реализации фильтров переопределения.
+
+* **OverrideAuthentication** – отключает аутентификацию
+
+* **OverrideAuthorization** – отключает авторизацию
+
+* **OverrideAction** – отключает фильтры методов
+
+* **OverrideException** – отключает фильтры исключений
 
 ## Домашнее задание
 
-1. Вернемся к нормализованному примеру из прошлого урока. Сделать представление (view), которое сумеет вернуть денормализованные данные
-2. Заменить все расчетные значения на соотвествующие функции
-3. Продумайте, где бы могли применить индексы в нормализованной структуре. И почему? И как?
+1. **Теория**
+2. Работа с атрибутами в C#
+
+3. Расширить созданный на уроке Phonebook API
+
+* Сделать guard-валидацию входных параметров, в случае ошибки возвращать 400-код и некоторое сообщение
+* Реализовать кастомное исключение на проверку формата телефона (+38-067-000-00-00)
+* Повесить глобальный фильтр исключения при неправильном формате телефона
+* Отключить его для метода Update (PUT)
