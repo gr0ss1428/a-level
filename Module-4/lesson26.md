@@ -1,114 +1,141 @@
-# Урок №26. Web API
+# Урок №26. Entity Framework. Code First.
 
 ## Полезные ссылки
 
-[JSON vs XML](https://habr.com/ru/post/31225/)
 
-[Web API 2 в ASP.NET](https://metanit.com/sharp/aspnet_webapi/1.1.php)
+[Fluent API Configurations in EF 6](http://www.entityframeworktutorial.net/code-first/fluent-api-in-code-first.aspx)
 
-[ASP.NET Web APIs](https://dotnet.microsoft.com/apps/aspnet/apis)
+[How to Use Code First Approach With Fluent API in ASP.NET MVC Application](https://www.c-sharpcorner.com/UploadFile/cd7c2e/how-to-use-code-first-approach-with-fluent-api-in-Asp-Net-mv/)
 
-## Сервис-ориентированная архитектура
+[Стратегии наследования в Entity Framework](http://www.entityframeworktutorial.net/code-first/inheritance-strategy-in-code-first.aspx)
 
-![SOA](/Module-4/images/soa.png)
+[Table-per-Hierarchy](https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph)
 
-Модульный подход к разработке программного обеспечения, основанный на использовании распределенных, 
-слабосвязанных и заменяемых компонентов, оснащённых стандартизированными интерфейсами для взаимодействия по стандартизированным протоколам.
+[Table-per-Type](https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-2-table-per-type-tpt)
 
-SOA придуман в конце 1980-х.
+[Table-per-Concrete-Type](https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-3-table-per-concrete-type-tpc-and-choosing-strategy-guidelines)
 
-![Systems evolution](/Module-4/images/systems-evolution.png)
+![Маст рид, маст рид](/Module-5/images/julia-lerman.png)
 
-Грубо говоря, SOA — набор архитектурных принципов, не зависящих от технологий и продуктов.
+## Entity Framework, основные подходы
 
-* **Веб-сервисы**
-* Очередь сообщений
-* Сервисная шина
-* Микросервисы
+Базовые критерии выбора подхода:
 
-![Architecture](/Module-4/images/architecture.png)
+- Наличие/отсутствие уже готовой базы данных
+- Требования к оптимальности структуры базы данных
+- Что меняется первым - база данных или модели?
 
-![SOA](/Module-4/images/soa-interaction.png)
+![EF approaches](/Module-5/images/ef-approaches.png)
 
-**SOA веб-сервисы** — не просто API общего назначения, всего лишь предоставляющие CRUD-доступ к базе 
-данных через HTTP.
+- Database first - БД уже существует и мы работаем с ней
+- Code first - на основании классов, описывающих предметную область
 
-Ради целостности ваших данных необходимо, чтобы пользователи понимали лежащую в основе 
-реализации модель и соблюдали бизнес-правила.
+### Partial классы как способ расширения автогенеренных моделей
 
-SOA подразумевает, что веб-сервисы являются ограниченными контекстами бизнес-субдоменов 
-(business sub-domain) и отделяет реализацию от решаемых веб-сервисами задач.
+ Что делать, если нам необходимы некоторые изменения в автогенеренных моделях? Каждый раз Т4 сгенерирует их заново.
 
+![Partial classes](/Module-5/images/partial-classes.png)
 
-### Достоинства
+- Генерализация (общий признак)
+- Упрощение обработки
+- Добавление некоторого поведения
 
-* Независимость набора технологий, развёртывания и масштабируемости сервисов.
+## Code First
 
-* Стандартный, простой и надёжный канал связи (передача текста по HTTP через порт 80).
+![Code First](/Module-5/images/code-first-approach.png)
 
-* Оптимизированный обмен сообщениями.
+Мы начинаем со структуры классов.
 
-* Стабильная спецификация обмена сообщениями.
+![Code First Context Example](/Module-5/images/code-first-context-example.png)
 
-* Изолированность контекстов доменов (Domain contexts).
+Он не содержит ранее рассмотренных SSD/CSDL/MSL. 
 
-### Недостатки
+**Как же происходит маппинг?**
 
-* Разные веб-сервисы тяжело интегрировать из-за различий в языках передачи сообщений. 
+### Fluent API
 
-* Например, два веб-сервиса, использующих разные JSON-представления одной и той же концепции.
+**Базовый набор команд**
 
-* Синхронный обмен сообщениями может перегрузить системы.
+| Конфигурация | Метод | Применение |
+| ------------- |:------------------:| -----:|
+| Model-wide Configurations | HasDefaultSchema() | Определяет схему по умолчанию |
+| Model-wide Configurations | ComplexType() | Конфигурирует класс как Complex Type |
+| Entity Configurations | HasIndex() | Определяет индекс для свойства |
+| Entity Configurations | HasKey() | Задает первичный ключ для сущности |
+| Entity Configurations | HasOptional() | Определяет часть Many в One-to-Many или Many-to-Many отношениях |
+| Entity Configurations | HasRequired() | Определяет ненуллабл внешний ключ |
+| Entity Configurations | Ignore() | Определяет что свойство не будет маппиться на столбец БД |
+| Entity Configurations | Map() | Определяет имя таблицы для сущности |
+| Entity Configurations | MapToStoredProcedures() | Маппинг на хранимые процедуры |
+| Entity Configurations | ToTable() | Определяет имя таблицы для сущности |
+| Property Configurations | HasColumnAnnotation() | Аннотация столбца |
+| Property Configurations | IsRequired() | Обязательное поле при сохранении |
+| Property Configurations | IsConcurrencyToken() | Поле будет использовать как оптимистичный concurrency token |
+| Property Configurations | IsOptional() | Nuulable столбец в БД |
+| Property Configurations | HasParameterName() | Параметр для хранимой процедуры |
+| Property Configurations | HasDatabaseGeneratedOption()  | Значение по умолчанию |
+| Property Configurations | HasColumnOrder() | Порядок столбца |
+| Property Configurations | HasColumnType() | Тип данных |
+| Property Configurations | HasColumnName() | Имя столбца |
 
-## JSON vs XML
+![Пример контекста в Code First](/Module-5/images/code-first-context-example2.png)
 
-![XML & JSON](/Module-4/images/xml-and-json.png)
+## Миграции
 
-Кросс-платформенные форматы, используемые для кооперации приложений.
+Изменения модели влияют на структуру базы данных.
 
-![XML vs JSON](/Module-4/images/json-vs-xml.png)
+**Нежелательно менять структуру базы данных.**
 
-## Web API
+![Migrations](/Module-5/images/migrations-scheme.png)
 
-* Часть технологии ASP.NET
+**Nuget Package Manager Console**
 
-* Великолепный способ создать REST-сервисы – открыть доступ к данным
+- Enable-Migrations
+- Add-Migration <name>
 
-Web API – веб-служба, которая может взаимодействовать с различными приложениями.
+## Стратегии наследования
+Entity Framework предлагает несколько базовых стратегий реализации наследования в рамках структуры БД.
+Полного соотвествия между поведением иерархии объектов и структурой таблиц - **НЕТ**!
 
-![Web API controller](/Module-4/images/web-api-controller.png)
+### Table-per-Hierarchy
 
-### CRUD в Web API
+![TPH](/Module-5/images/table-per-hierarchy.png)
 
-* Create – POST
+- Одна таблица для всей иерархии
+- Сомнительная нормализация
+- Столбец **Discriminator**
 
-* Retrieve – GET
+### Table-per-Type
 
-* Update – PUT
+![TPT](/Module-5/images/table-per-type.png)
 
-* Delete - DELETE
+- Структура таблиц соотвествует иерархии классов
+- Нормализована
+- Запросы с большим количеством JOIN
 
-### Web API Pipeline
+### Table-per-Type
 
-![Web API request](/Module-4/images/web-api-request.png)
+![TPT](/Module-5/images/table-per-type.png)
 
-![Web API pipeline](/Module-4/images/web-api-pipeline.png)
+- Структура таблиц соотвествует иерархии классов
+- Нормализована
+- Запросы с большим количеством JOIN
+- класс-предок представлен в структуре, использует связь один-к-одному
 
-## Практика 
+### Table-per-ConcreteType
 
-Открываем PhoneBook.
+![TPT](/Module-5/images/table-per-concrete-type.png)
 
-* Добавляем новый API-проект
-
-* Переносим логику получения/изменения информации
-
-## Fiddler/Postman
+- Нет абстрактных классов
+- Только фактические классы
+- Нормализована
+- Запросы с большим количеством JOIN
 
 ## Домашнее задание
 
-1. **Теория**
+1. Возвращаемся к проекту **Phonebook**
+2. Сделать частичную реализацию для моделей домена
+3. Перенести все генеренные поля в частичные классы в новом проекте
+4. Реализовать уровень доступа к данным при помощи Code First
+5. Добавить маркер логического удаления и применить миграцию
 
-2. Расширить созданный на уроке Phonebook API
-
-* Создать CRUD-операции
-* Проверять Fiddler/Postmans

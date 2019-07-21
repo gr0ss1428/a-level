@@ -1,112 +1,95 @@
-# Урок №24. Model-View-Controller
+# Урок №24. Многоуровневая архитектура, паттерн для уровня доступа к данным. Знакомство с ORM
 
 ## Полезные ссылки
 
-[MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
 
-[Руководство по ASP.NET MVC 5](https://metanit.com/sharp/mvc5/)
+[Несколько уровней внутри приложения](https://www.codeproject.com/Articles/36847/Three-Layer-Architecture-in-C-NET-2)
 
-[ASP.NET MVC, уроки](https://habr.com/ru/post/175999/)
+[Паттерн Репозиторий](https://metanit.com/sharp/articles/mvc/11.php)
 
-## MVC 
+[Паттерн Репозиторий](https://habr.com/ru/post/248505/)
 
-Концепция паттерна MVC (model - view - controller) предполагает разделение приложения на три компонента:
+[Что такое Dapper](https://dapper-tutorial.net/dapper)
 
-**Контроллер** (controller) представляет класс, обеспечивающий связь между пользователем и системой, представлением и хранилищем данных. Он получает вводимые пользователем данные и обрабатывает их. И в зависимости от результатов обработки отправляет пользователю определенный вывод, например, в виде представления.
+[CRUD при помощи Dapper](https://habr.com/ru/sandbox/71430/)
 
-**Представление (view)** - это собственно визуальная часть или пользовательский интерфейс приложения. Как правило, html-страница, которую пользователь видит, зайдя на сайт.
+[Битва производительности](https://exceptionnotfound.net/dapper-vs-entity-framework-vs-ado-net-performance-benchmarking/)
 
-**Модель (model)** представляет класс, описывающий логику используемых данных.
+## Многоуровневое приложение
 
-![MVC](/Module-4/images/mvc-pattern.png)
+![Многоуровневое приложение](/Module-5/images/3-tiers.png)
 
-Паттерн реализует концепцию разделение ответственности, в связи с чем легче построить работу 
-над отдельными компонентами.
+Основная идея разделения уровней - сделать приложение более гибким, избежать повторений кода, добавить возможность повторного использования модулей.
 
-## Практика
+Каждый уровень имеет набор интерфейсов (как в прямом, так и переносном смысле), при соблюдении сигнатуры, внутреннее содержимое может меняться.
 
-Создаем MVC проект, Phonebook. Он умеет работать с группами контактов и контактами.
+Уровень презентации (MVC, Web API, Console) не знает ничего про уровень работы с данными.
 
-Детально смотрим на создание контроллеров, моделей, представлений.
+## Паттерн Репозиторий
 
-## Жизненный цикл в MVC
+![Паттерн Repository](/Module-5/images/repository.png)
 
-![Жизненный цикл MVC страницы](/Module-4/images/mvc-pipeline-simple.png)
+Позволяет абстрагироваться от конкретных подключений к источникам данных, с которыми работает программа, и является промежуточным звеном 
+между классами, непосредственно взаимодействующими с данными, и остальной программой.
 
-Тоже самое более глубоко
+![Repository implementation](/Module-5/images/repository-implementation.png)
 
-## Routing или маршрутизация
+Возможная реализация для CRUD-процедур.
 
-![Маршрутизация](/Module-4/images/mvc-routing.png)
+## ORM (object-relationship mapper)
 
-**RouteConfig.cs**
+![Пример на ADO.NET](/Module-5/images/adonet-sample.png)
 
-![Маршрутизация](/Module-4/images/mvc-routing-definition.png)
+Что с ним не так? Как вы думаете?
 
-## Partial Views
+- много повторяющегося кода (инициализация команд, механизм чтения данных)
+- странный механизм маппинга результатов запроса на соотвествующий класс
 
-Action может также возвращать частичные представления. Их отличительной особенностью является то, 
-что их можно встраивать в другие обычные представления. Частичные представления могут использоваться также 
-как и обычные, однако наиболее удобной областью их использования является рендеринг результатов AJAX-запроса.
+![ORM](/Module-5/images/orm.png)
 
-![Частичные представления](/Module-4/images/partial-views.png)
+![Маппинг в ORM](/Module-5/images/orm-mapping.png)
 
-## Что мы можем вернуть из Action?
 
-* ViewResult - View(), Рендерит View как веб-страницу
+## Dapper
 
-* PartialViewResult - PartialView(), Рендерит View как PartialView
+Причем тут Stackoverflow?
 
-* RedirectResult - Redirect(), редирект
+![Stackoverflow](/Module-5/images/so.png)
 
-* RedirectToRouteResult - RedirectToRoute(), Редирект на другой action метод
+Как это выглядит?
 
-* ContentResult - Content(), Возвращает определенный пользователем тип
+![Dapper ORM](/Module-5/images/dapper-orm.png)
 
-* JsonResult - Json(), JSON
+Как же в итоге изменился наш код?
 
-* JavaScriptResult - JavaScript(), JavaScript
+![Dapper code](/Module-5/images/dapper-code.png)
 
-* FileResult - File()
+- И еще асинхронность из коробки!!!
 
-* EmptyResult - none
+## Entity Framework, очень быстрое знакомство
 
-## Атрибуты валидации
+![EF](/Module-5/images/ef-general.png)
 
-* Required
+**Основные способы генерации контекста
 
-* StringLength
+![EF](/Module-5/images/context-creation-ways.png)
 
-* Range
+- Database first - БД уже существует и мы работаем с ней
+- Code first - на основании классов, описывающих предметную область
+- Model first
 
-* RegularExpression
+Из чего состоит наш edmx (database first)? 
 
-* CreditCard
+![EDMX](/Module-5/images/edmx-1.png)
 
-* CustomValidation
+- SSDL - описание хранилища данных
+- CSDL - описание соотвествующих классов
+- MSL - маппинг
 
-* EmailAddress
-
-* FileExtension
-
-* MaxLength
-
-* MinLength
-
-* Phone
-
-## Результаты валидации
-
-@Html.ValidationSummary
-
-@Html.ValidationMessageFor
+![EDMX](/Module-5/images/edmx-2.png)
 
 ## Домашнее задание
 
-1. **Теория**
-
-2. Реализовать костяк  MVC приложения для  Phonebook. Костяк в себя включает:
-
-- Частичные представления для повторяющегося фунционала
-
-- Валидацию ввода
+1. Возвращаемся к проекту **Phonebook**
+2. Производим рефакторинг по примеру как мы делали в классе. Выделяем три уровня, Persistance Layer, Business Layer, View Layer для таких сущностей, как контакты и телефоны
+3. Создаем соотвествующие репозитории для всех CRUD-операций, как на ADO.NET так и на Dapper. Репозитории должны быть взаимозаменяемые
